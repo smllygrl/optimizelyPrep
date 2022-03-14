@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The boat is a'syncing!!!</title>
+  </head>
+  <body>
+    <h1>Tell the browser what you want</h1>
+    <div class="nav">
+      <a href="#kanye" class="nav__link">I want some Kanye!</a>
+      <a href="#poems" class="nav__link">A poem might be nice...</a>
+      <a href="#dadjoke" class="nav__link"
+        >Relieve my existential dread with a Dad joke...</a
+      >
+      <a href="#textbox" class="nav__link"
+        >Look, I just want something I type to be rendered to the page</a
+      >
+    </div>
+
+    <section id="kanye">
+      <button>Ye</button>
+      <div id="kanyeDOM"></div>
+    </section>
+
+    <section id="poems">
+      <button>Poetify!</button>
+      <div class="poemsDOM"></div>
+    </section>
+
+    <section id="dadjoke">
+      <button>I am ready</button>
+      <div class="dadjokeDOM"></div>
+    </section>
+
+    <section id="textbox">
+      <input
+        type="text"
+        id="textInput"
+        placeholder="Nil desperandum carborundum"
+      />
+      <button id="textSubmit">APPEND IT</button>
+      <div class="textboxDOM"></div>
+    </section>
+  </body>
+  <script src="optimizely_prep.js"></script>
+</html>

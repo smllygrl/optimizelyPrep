@@ -28,8 +28,6 @@ const accessKanye = async () => {
   append("p", kanyeToRender, kanyeDiv);
 };
 
-// const clearKanye = ()
-
 // DAD JOKES
 const dadJokeBtn = document.getElementById("dadjokeBtn");
 const dadJokeDiv = document.getElementById("dadjokeDOM");
@@ -67,23 +65,88 @@ textClearBtn.addEventListener("click", () => {
 
 textBtn.addEventListener("click", () => {
   console.log("Text button pressed");
+  clear(textBoxDiv);
   accessText();
 });
 
 const accessText = () => {
-  clear(textBoxDiv);
-  const textToRender = document.querySelector("input").value;
+  const textToRender = textInput.value;
   console.log(textToRender);
   append("p", textToRender, textBoxDiv);
   textInput.value = "";
 };
 
-// HELPER FUNCITON
+// GOOGLE BOOKS
+const GOOGLEBOOKS_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+const bookSearchBtn = document.getElementById("bookBtn");
+const bookClearBtn = document.getElementById("bookClearBtn");
+const bookDiv = document.getElementById("bookDOM");
+const bookInput = document.getElementById("bookInput");
+
+bookSearchBtn.addEventListener("click", () => {
+  getInputFromUser();
+});
+
+bookClearBtn.addEventListener("click", () => {
+  clear(bookDiv);
+});
+
+const getInputFromUser = () => {
+  clear(bookDiv);
+  const query = bookInput.value;
+  const formattedQuery = query.replaceAll(" ", "+");
+  console.log(formattedQuery);
+  accessBooks(formattedQuery);
+  bookInput.value = "";
+};
+
+const accessBooks = async (formattedQuery) => {
+  const bookRaw = await fetch(`${GOOGLEBOOKS_URL}${formattedQuery}`);
+  const bookResponse = await bookRaw.json();
+  const index = getRandomNumber();
+  const book = bookResponse.items[index];
+  console.log(book);
+  renderBook(book);
+};
+
+const renderBook = (book) => {
+  console.log(book);
+
+  const title = book.volumeInfo.title;
+  append("h3", title, bookDiv);
+
+  const image = book.volumeInfo.imageLinks?.smallThumbnail;
+  const bookImage = document.createElement("img");
+  bookImage.src = image;
+  bookDiv.appendChild(bookImage);
+
+  const authorArr = book.volumeInfo.authors;
+  const authorStr = authorToString(authorArr);
+  append("h4", `Written by: ${authorStr}`, bookDiv);
+};
+
+// HELPER FUNCITONS
 const append = (element, nodeContent, parent) => {
   const newElement = document.createElement(element);
   const elementContent = document.createTextNode(nodeContent);
   newElement.appendChild(elementContent);
   parent.appendChild(newElement);
+};
+
+const authorToString = (authorArr) => {
+  console.log(authorArr);
+  const length = authorArr.length;
+  let returnString = "";
+  for (let i = 0; i < length; i++) {
+    let authorString = authorArr[i];
+    returnString = returnString + authorString + " ";
+  }
+  console.log(returnString);
+  return returnString;
+};
+
+const getRandomNumber = () => {
+  return Math.floor(Math.random() * 11);
 };
 
 const clear = (divID) => {

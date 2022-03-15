@@ -9,7 +9,7 @@
   <body>
     <h1>Tell the browser what you want</h1>
     <div class="nav">
-      <a href="#kanye" class="nav__link">I want some Kanye!</a>
+      <a href="#kanye" class="nav__link">I want a random Kanye quote...</a>
       <a href="#dadjoke" class="nav__link"
         >Relieve my existential dread with a Dad joke...</a
       >
@@ -19,13 +19,15 @@
     </div>
 
     <section id="kanye">
-      <button>Ye</button>
+      <button id="kanyeBtn">Ye</button>
       <div id="kanyeDOM"></div>
+      <button id="kanyeBtn__clear">Clear Ye</button>
     </section>
 
     <section id="dadjoke">
-      <button>I am ready</button>
+      <button id="dadjokeBtn">I am ready</button>
       <div id="dadjokeDOM"></div>
+      <button id="dadjokeBtn__clear">...delete this</button>
     </section>
 
     <section id="textbox">
@@ -35,7 +37,8 @@
         placeholder="Nil desperandum carborundum"
       />
       <button id="textSubmit">APPEND IT</button>
-      <div class="textboxDOM"></div>
+      <div id="textboxDOM"></div>
+      <button id="textDelete">DELETE IT</button>
     </section>
   </body>
   <script src="optimizely_prep.js"></script>
